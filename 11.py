@@ -25,22 +25,22 @@ grid_str = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 
 
 # right 
-# total = 1 
-# highest_total = 1
-# i = 0
+total = 1 
+highest_total = 1
+i = 0
 
-# for line in range(0, 20):
-#     for y in range(line * 20, line * 20 + 16):
-#         total = 1
-#         for x in range(y, y + 4):
-#             total = int(grid_str.split()[x]) * total
-#             if total > highest_total:
-#                 highest_total = total
-#                 i = y
-# print(highest_total)
-# print(i)
-# print('line', i/20)
-# print(grid_str.split()[i], 'to', grid_str.split()[i + 3])
+for line in range(0, 20):
+    for y in range(line * 20, line * 20 + 16):
+        total = 1
+        for x in range(y, y + 4):
+            total = int(grid_str.split()[x]) * total
+            if total > highest_total:
+                highest_total = total
+                i = y
+print(highest_total)
+print(i)
+print('line', i/20)
+print(grid_str.split()[i], 'to', grid_str.split()[i + 3])
 
 
 
