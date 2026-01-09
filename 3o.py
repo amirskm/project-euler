@@ -1,18 +1,8 @@
 def sum_squared_natural_numbers(count):
-    n = 0
-    sum_squared_total = 0
-    while n <= count:
-        sum_squared_total += n ** 2
-        n += 1
-    return sum_squared_totalgit
+    return sum(n**2 for n in range(1, count + 1))
 
 def square_sum_natural_numbers(count):
-    n = 0
-    square_sum_total = 0
-    while n <= count:
-        square_sum_total += n
-        n += 1
-    return square_sum_total**2
+    return (sum(range(count + 1)))**2
 # def get_sum_and_square_difference(count)
 
 print(square_sum_natural_numbers(100) - sum_squared_natural_numbers(100))
