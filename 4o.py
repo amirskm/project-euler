@@ -1,25 +1,29 @@
-def get_largest_palindrom(digits):
-    n = 1
-    p = get_largest_potential_palindrom(digits)
-    while n < p:
-        if is_palindrome(p) and is_factors_length(digits, p):
-            return p
-            break
-        else:
-            p += -1
+def get_largest_palindrome(digits):
+    upper_bound = 10**digits - 1
+    lower_bound = 10**(digits - 1)
+    max_palindrome = 0
 
-def is_factors_length(length, palindrom):
-    for n in range(10**(length - 1), 10**length):
-        if palindrom % n == 0 and len(str(palindrom // n)) == length:
-            return True
+    # Start from the largest possible numbers and work down
+    for i in range(upper_bound, lower_bound - 1, -1):
+        # Optimization: if i * i is smaller than the best palindrome found, 
+        # no need to check further for this i
+        if i * i <= max_palindrome:
             break
-    return False
+            
+        for j in range(i, lower_bound - 1, -1):
+            product = i * j
+            
+            # If product is smaller than what we already found, stop the inner loop
+            if product <= max_palindrome:
+                break
+                
+            if is_palindrome(product):
+                max_palindrome = product
+                
+    return max_palindrome
 
 def is_palindrome(val):
     s = str(val)
     return s == s[::-1]
 
-def get_largest_potential_palindrom(length):
-    return int((9 * (10 ** length - 1) / (10 - 1))**2)
-
-print(get_largest_palindrom(3))
+print(get_largest_palindrome(3))
