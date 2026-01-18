@@ -1,9 +1,15 @@
 def get_sum_primes(limit):
-    limit_sum = 2
-    for n in range(3, limit, 2):
-        if all(n % d != 0 for d in range(3, int(n**.5 + 1), 2)):
-            print(n)
-            limit_sum += n
-    return limit_sum 
+    # Create a list of Booleans "True" for every number up to the limit
+    primes = [True] * limit
+    primes[0] = primes[1] = False # 0 and 1 are not prime
+    
+    for p in range(2, int(limit**0.5) + 1):
+        if primes[p]:
+            # If p is prime, mark all its multiples as False
+            for i in range(p * p, limit, p):
+                primes[i] = False
+    
+    # Sum all the indices that are still True
+    return sum(i for i, is_prime in enumerate (primes) if is_prime)
 
-print(get_sum_primes(2000000))
+print(get_sum_primes(10))
