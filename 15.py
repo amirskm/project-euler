@@ -1,16 +1,13 @@
-def get_lattice_path_count(rows, columns):
-    end_state = (columns + 1) * (rows + 1)
-    paths = 0
-    for i in range(0, end_state, 1):
-        print('i', i)
-    paths += 1
-    return paths
-    
+n = 20
 
-print(get_lattice_path_count(1, 2))
-#  0 1 2 5
-#  0 1 4 5
-#  0 3 4 5
+# grid = [[1 for _ in range(n + 1)] for _ in range(n + 1)]
+grid = [[1 for _ in range(n + 1)] for _ in range(n + 1)]
 
-#  + 1
-#  + 3
+print(grid)
+
+
+for r in range(1, n + 1):
+    for c in range(1, n + 1):
+        grid[r][c] = grid[r - 1][c] + grid[r][c - 1]
+
+print(grid[n][n])
